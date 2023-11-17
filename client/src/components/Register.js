@@ -13,7 +13,11 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/users", { name, email, password })
+      .post("http://localhost:5000/api/users/register", {
+        name,
+        email,
+        password,
+      })
       .then((res) => {
         console.log(res.data);
         alert("register successful");

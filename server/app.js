@@ -30,11 +30,29 @@ app.get("/api/users", async (req, res) => {
   }
 });
 //POST Server
-app.post("/api/users", async (req, res) => {
+app.post("/api/users/register", async (req, res) => {
   const users = new Users(req.body);
   try {
     await users.save();
     res.status(201).json(users);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
+app.post("/api/users/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const result = await Users.findOne({ email: email });
+    if (result) {
+      if (result.password === password) {
+        res.status(200).json("Success");
+      } else {
+        res.status(500).json("The password is incorrect");
+      }
+    } else {
+      res.status(404).json("No user found");
+    }
   } catch (err) {
     res.status(500).json(err.message);
   }

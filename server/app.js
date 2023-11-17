@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const Users = require("./models/UserModel");
+const Employee = require("./models/EmployeeModel");
 
 //Initializing Packages
 const app = express();
@@ -21,15 +22,50 @@ app.get("/", (req, res) => {
 });
 
 //GET Server
-app.get("/api/users", async (req, res) => {
+//Getting Single user
+app.get("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
   try {
-    const result = await Users.find();
+    const result = await Users.findById(id);
+    if (!result) {
+      res.status(404).send("no data found");
+    } else {
+      res.status(200).json(result);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Getting All the employees
+app.get("/api/employee", async (req, res) => {
+  try {
+    const result = await Employee.find();
     res.status(200).json(result);
   } catch (err) {
     res.status(500).json(err.message);
   }
 });
-//POST Server
+
+//Getting single Employee
+app.get("/api/employee/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const result = await Employee.findById(id);
+    if (!result) {
+      res.status(404).send("no data found");
+    } else {
+      res.status(200).json(result);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//POST Servers
+//Creating User
 app.post("/api/users/register", async (req, res) => {
   const users = new Users(req.body);
   try {
@@ -53,6 +89,44 @@ app.post("/api/users/login", async (req, res) => {
     } else {
       res.status(404).json("No user found");
     }
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
+//Creating Employee
+app.post("/api/employee/register", async (req, res) => {
+  const employee = new Employee(req.body);
+  try {
+    await employee.save();
+    res.status(201).json(employee);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
+//Patch Servers
+//Updating Employee
+app.patch("/api/employee/:id", async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+  try {
+    const result = await Employee.findOneAndUpdate({ _id: id }, data, {
+      new: true,
+    });
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ Error: err.message });
+  }
+});
+
+//Delete Servers
+//Deleting Employee
+app.delete("/api/employee/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await Employee.deleteOne({ _id: id });
+    res.status(200).json({ DeletedCount: result.deletedCount });
   } catch (err) {
     res.status(500).json(err.message);
   }

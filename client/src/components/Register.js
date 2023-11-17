@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -26,43 +27,74 @@ const Register = () => {
       .catch((err) => console.log(err.message));
   };
   return (
-    <div className="register d-flex">
-      <h1>Welcome to Register Page</h1>
-      <div className="container ">
-        <form onSubmit={handleSubmit}>
-          <p>
-            <label htmlFor="name">Full Name</label> {"   "}
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter your Full name"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </p>
-          <p>
-            <label htmlFor="email">Email</label> {"   "}
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter your Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </p>
-          <p>
-            <label htmlFor="password">Password</label> {"   "}
-            <input
-              type="text"
-              name="password"
-              id="password"
-              placeholder="Enter your Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </p>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+    <div className="register">
+      <Container>
+        <Row className="vh-100 d-flex justify-content-center align-items-center">
+          <Col md={8} lg={6} xs={12}>
+            <Card className="shadow px-4">
+              <Card.Body>
+                <div className="mb-3 mt-md-4">
+                  <h2 className="fw-bold mb-2 text-center text-uppercase ">
+                    Register
+                  </h2>
+                  <div className="mb-3">
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3" controlId="Name">
+                        <Form.Label className="text-center">Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter Name"
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="text-center">
+                          Email address
+                        </Form.Label>
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter email"
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </Form.Group>
+
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicPassword"
+                      >
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                          type="password"
+                          placeholder="Password"
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicCheckbox"
+                      ></Form.Group>
+                      <div className="d-grid">
+                        <Button variant="primary" type="submit">
+                          Create Account
+                        </Button>
+                      </div>
+                    </Form>
+                    <div className="mt-3">
+                      <p className="mb-0  text-center">
+                        Already have an account??{" "}
+                        <Link to={"/login"}>
+                          <span className="text-primary fw-bold">Sign In</span>
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

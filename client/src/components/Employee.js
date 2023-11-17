@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const Employee = () => {
   const [data, setData] = useState([]);
@@ -50,7 +51,10 @@ const Employee = () => {
                 <td className="border">{employee.workingHours}</td>
                 <td className="border">{employee.country}</td>
                 <td className="border">
-                  <Button variant="outline-success">Edit</Button>{" "}
+                  <Link to={`/update/${employee._id}`}>
+                    {" "}
+                    <Button variant="outline-success">Edit</Button>{" "}
+                  </Link>
                   <Button variant="outline-danger">Delete</Button>{" "}
                 </td>
               </tr>

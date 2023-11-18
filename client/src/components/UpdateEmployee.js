@@ -24,7 +24,7 @@ const UpdateEmployee = () => {
   });
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/employee/${id}`)
+      .get(`https://weary-hoodie-bull.cyclic.app/api/employee/${id}`)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err.message));
   }, []);
@@ -33,7 +33,7 @@ const UpdateEmployee = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .patch(`http://localhost:5000/api/employee/${id}`, data)
+      .patch(`https://weary-hoodie-bull.cyclic.app/api/employee/${id}`, data)
       .then((res) => {
         alert("Update successful");
         console.log(res.data);

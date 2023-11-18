@@ -68,7 +68,7 @@ const Register = () => {
 
     if (isNameValid && isEmailValid && isPasswordValid) {
       axios
-        .post("http://localhost:5000/api/users/register", {
+        .post("https://weary-hoodie-bull.cyclic.app/api/users/register", {
           name,
           email,
           password,

@@ -16,20 +16,7 @@ const Home = () => {
   const [workingHours, setWorkingHours] = useState();
   const [country, setCountry] = useState();
   const [isAgree, setIsAgree] = useState();
-  // const [profilePicture, setProfilePicture] = useState();
 
-  // const convertBase64 = (e) => {
-  //   console.log(e);
-  //   let reader = new FileReader();
-  //   reader.readAsDataURL(e.target.files[0]);
-  //   reader.onload = () => {
-  //     console.log(reader.result);
-  //     setProfilePicture(reader.result);
-  //   };
-  //   reader.onerror = (error) => {
-  //     console.log("Error", error);
-  //   };
-  // };
   //form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +37,7 @@ const Home = () => {
     }
     try {
       const response = axios.post(
-        "http://localhost:5000/api/employee/register",
+        "https://weary-hoodie-bull.cyclic.app/api/employee/register",
         {
           name,
           dob,

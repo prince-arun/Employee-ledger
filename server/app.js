@@ -13,7 +13,10 @@ const app = express();
 dotenv.config();
 
 //Initializing Middleware
-app.use(cors());
+const corsOptions = {
+  origin: "https://employee-ledger.vercel.app",
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded());

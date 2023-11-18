@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/users/login", {
+      .post("https://weary-hoodie-bull.cyclic.app/api/users/login", {
         email,
         password,
       })

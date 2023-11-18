@@ -11,7 +11,7 @@ const Employee = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/employee")
+      .get("https://weary-hoodie-bull.cyclic.app/api/employee")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -27,7 +27,7 @@ const Employee = () => {
     const confirm = window.confirm("Would you like to Delete the Data?");
     if (confirm) {
       axios
-        .delete(`http://localhost:5000/api/employee/${id}`)
+        .delete(`https://weary-hoodie-bull.cyclic.app/api/employee/${id}`)
         .then((res) => {
           alert("Data deleted Successfully");
           window.location.reload();

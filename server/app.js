@@ -26,6 +26,16 @@ app.get("/", (req, res) => {
   res.status(200).send("Welcome to the Server");
 });
 
+//Connecting to server before listining
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.CONNECTION_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 //GET Server
 //Getting Single user
 app.get("/api/users/:id", async (req, res) => {
@@ -146,15 +156,8 @@ app.delete("/api/employee/:id", async (req, res) => {
 });
 
 //Listening to Server
-const start = async () => {
-  try {
-    await mongoose.connect(process.env.CONNECTION_URL);
-    app.listen(PORT, () => {
-      console.log(`Server is running successfully at PORT ${PORT}`);
-    });
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-
-start();
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("listening for requests");
+  });
+});

@@ -35,7 +35,7 @@ const Employee = () => {
         .catch((err) => console.log(err.message));
     }
   };
-  console.log(data);
+
   if (data.length === 0) {
     navigate("/home");
   }

@@ -109,12 +109,6 @@ app.post("/api/users/login", async (req, res) => {
   }
 });
 
-const Storage = multer.diskStorage({
-  destination: "uploads",
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
 //Creating Employee
 app.post("/api/employee/register", async (req, res) => {
   const employee = new Employee(req.body);

@@ -11,16 +11,6 @@ const UpdateEmployee = () => {
 
   const navigate = useNavigate();
   //Getting Value of form fields
-  //   const [name, setName] = useState();
-  //   const [dob, setDob] = useState();
-  //   const [gender, setGender] = useState();
-  //   const [email, setEmail] = useState();
-  //   const [phone, setPhone] = useState();
-  //   const [industry, setIndustry] = useState();
-  //   const [workingHours, setWorkingHours] = useState();
-  //   const [country, setCountry] = useState();
-  //   const [isAgree, setIsAgree] = useState();
-
   const [data, setData] = useState({
     name: "",
     dob: "",
@@ -529,10 +519,10 @@ const UpdateEmployee = () => {
                         </Form.Control>
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="profilePicture">
+                      {/* <Form.Group className="mb-3" controlId="profilePicture">
                         <Form.Label>Profile Picture</Form.Label>
                         <Form.Control type="file" accept="image/*" />
-                      </Form.Group>
+                      </Form.Group> */}
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlCheckbox1"
@@ -555,7 +545,6 @@ const UpdateEmployee = () => {
                         >
                           Update
                         </Button>
-                        <Button variant="danger">Clear</Button>
                       </div>
                     </Form>
                   </div>

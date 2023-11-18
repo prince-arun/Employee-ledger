@@ -87,15 +87,15 @@ app.post("/api/users/login", async (req, res) => {
     const result = await Users.findOne({ email: email });
     if (result) {
       if (result.password === password) {
-        res.status(200).json("Success");
+        res.status(200).json({ message: "Success" });
       } else {
-        res.status(500).json("The password is incorrect");
+        res.status(401).json({ message: "Incorrect password" });
       }
     } else {
-      res.status(404).json("No user found");
+      res.status(404).json({ message: "No user found" });
     }
   } catch (err) {
-    res.status(500).json(err.message);
+    res.status(500).json({ message: err.message });
   }
 });
 
@@ -112,7 +112,9 @@ app.post("/api/employee/register", async (req, res) => {
     await employee.save();
     res.status(201).json(employee);
   } catch (err) {
-    res.status(500).json(err.message);
+    res
+      .status(500)
+      .json({ message: "Error saving employee data", error: err.message });
   }
 });
 

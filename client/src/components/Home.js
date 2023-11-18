@@ -33,24 +33,48 @@ const Home = () => {
   //form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/employee/register", {
-        name,
-        dob,
-        gender,
-        email,
-        phone,
-        industry,
-        workingHours,
-        country,
-        isAgree,
-      })
-      .then((res) => {
-        alert("Data Added successfully");
-        console.log(res.data);
-        navigate("/employee");
-      })
-      .catch((err) => console.log(err.message));
+    // Basic validation
+    if (
+      !name ||
+      !dob ||
+      !gender ||
+      !email ||
+      !phone ||
+      !industry ||
+      !workingHours ||
+      !country ||
+      !isAgree
+    ) {
+      alert("Please fill in all the required fields");
+      return;
+    }
+    try {
+      const response = axios.post(
+        "http://localhost:5000/api/employee/register",
+        {
+          name,
+          dob,
+          gender,
+          email,
+          phone,
+          industry,
+          workingHours,
+          country,
+          isAgree,
+        }
+      );
+      alert("Data Added successfully");
+      console.log(response.data);
+      navigate("/employee");
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else if (error.request) {
+        alert("No response from the server");
+      } else {
+        alert("Error: " + error.message);
+      }
+    }
   };
 
   const back = () => {

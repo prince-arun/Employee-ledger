@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-import Alert from "react-bootstrap/Alert";
 
 const Login = () => {
   const navigate = useNavigate();

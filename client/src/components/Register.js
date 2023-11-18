@@ -6,12 +6,11 @@ import Alert from "react-bootstrap/Alert";
 
 const Register = () => {
   const navigate = useNavigate();
-  //State variables for Reg Data
+
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  // State variables for error messages
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -62,7 +61,7 @@ const Register = () => {
       setGeneralError("Please enter all details");
       return;
     }
-    // Validate all fields
+
     const isNameValid = validateName();
     const isEmailValid = validateEmail();
     const isPasswordValid = validatePassword();

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
+import Navbar from "react-bootstrap/Navbar";
 
 const UpdateEmployee = () => {
   //Getting ID from url
@@ -57,8 +58,30 @@ const UpdateEmployee = () => {
     return formattedDate;
   };
 
+  const back = () => {
+    navigate(-1);
+  };
   return (
     <div className="update">
+      <Navbar className="bg-body-secondary">
+        <Container>
+          <h2 className="custom-brand">Employce</h2>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>
+              <Link to={"/login"}>
+                <Button className="ms-4" variant="dark">
+                  Sign out
+                </Button>
+              </Link>
+
+              <Button onClick={back} className="ms-4" variant="warning">
+                Go Back
+              </Button>
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>

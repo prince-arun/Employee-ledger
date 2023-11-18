@@ -19,7 +19,7 @@ const Login = () => {
         console.log(res.data);
         if (res.data === "Success") {
           alert("Login successful");
-          navigate("/home");
+          navigate("/employee");
         }
       })
       .catch((err) => console.log(err.message));
@@ -73,7 +73,7 @@ const Login = () => {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Don't have an account??{" "}
-                        <Link to={"/register"}>
+                        <Link to={"/"}>
                           <span className="text-primary fw-bold">Sign Up</span>
                         </Link>
                       </p>

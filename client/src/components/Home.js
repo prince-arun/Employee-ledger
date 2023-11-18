@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,7 +16,20 @@ const Home = () => {
   const [workingHours, setWorkingHours] = useState();
   const [country, setCountry] = useState();
   const [isAgree, setIsAgree] = useState();
+  // const [profilePicture, setProfilePicture] = useState();
 
+  // const convertBase64 = (e) => {
+  //   console.log(e);
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(e.target.files[0]);
+  //   reader.onload = () => {
+  //     console.log(reader.result);
+  //     setProfilePicture(reader.result);
+  //   };
+  //   reader.onerror = (error) => {
+  //     console.log("Error", error);
+  //   };
+  // };
   //form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,14 +46,33 @@ const Home = () => {
         isAgree,
       })
       .then((res) => {
-        alert("register successful");
+        alert("Data Added successfully");
         console.log(res.data);
         navigate("/employee");
       })
       .catch((err) => console.log(err.message));
   };
+
+  const back = () => {
+    navigate(-1);
+  };
   return (
     <div className="home">
+      <Navbar className="bg-body-secondary">
+        <Container>
+          <h2 className="custom-brand">Employce</h2>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>
+              <Link to={"/login"}>
+                <Button className="ms-4" variant="dark">
+                  Sign out
+                </Button>
+              </Link>
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
@@ -458,10 +491,14 @@ const Home = () => {
                         </Form.Control>
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="profilePicture">
+                      {/* <Form.Group className="mb-3" controlId="profilePicture">
                         <Form.Label>Profile Picture</Form.Label>
-                        <Form.Control type="file" accept="image/*" />
-                      </Form.Group>
+                        <Form.Control
+                          type="file"
+                          accept="image/*"
+                          onChange={convertBase64}
+                        />
+                      </Form.Group> */}
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlCheckbox1"
@@ -476,13 +513,20 @@ const Home = () => {
                       <div className="d-grid">
                         <Button
                           className="mb-3"
-                          variant="primary"
+                          variant="success"
                           type="submit"
                         >
                           Add Data
                         </Button>
                         <Button variant="danger" type="reset">
                           Clear
+                        </Button>
+                        <Button
+                          onClick={back}
+                          className="mt-3"
+                          variant="primary"
+                        >
+                          Back
                         </Button>
                       </div>
                     </Form>

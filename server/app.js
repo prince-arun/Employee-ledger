@@ -4,14 +4,19 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const Users = require("./models/UserModel");
 const Employee = require("./models/EmployeeModel");
+const bodyParser = require("body-parser");
+const multer = require("multer");
 
 //Initializing Packages
 const app = express();
+
 dotenv.config();
 
 //Initializing Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded());
 
 //Initializing Constants
 const PORT = process.env.PORT || 5000;
@@ -94,6 +99,12 @@ app.post("/api/users/login", async (req, res) => {
   }
 });
 
+const Storage = multer.diskStorage({
+  destination: "uploads",
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
 //Creating Employee
 app.post("/api/employee/register", async (req, res) => {
   const employee = new Employee(req.body);

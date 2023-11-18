@@ -34,7 +34,7 @@ const employeeSchema = new mongoose.Schema({
     required: true,
   },
   profilePicture: {
-    type: String,
+    type: Buffer,
   },
   isAgree: {
     type: Boolean,

@@ -44,7 +44,10 @@ const Employee = () => {
       <div>
         <Navbar className="bg-body-secondary">
           <Container>
-            <h2 className="custom-brand">Employce</h2>
+            <Link to={"/employee"}>
+              <h2 className="custom-brand">Employce</h2>
+            </Link>
+
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
